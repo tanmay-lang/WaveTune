@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaveTune - Your Favourite Music</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fbeed8;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background-color: #1db954;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .playlist {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #d1e8e2;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .playlist h1 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .song {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+        }
+        
+        .song:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-5px) scale(1.02);
+        }
+        
+        .song img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+        
+        .song:hover img {
+            transform: rotate(360deg);
+        }
+        
+        .song span {
+            flex: 1;
+            margin-left: 10px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .song time {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        WaveTune - Your Favourite Music is Here
+    </header>
+
+    <div class="playlist">
+        <h1>Your Music Playlist</h1>
+        <div class="song" data-song="music/1.mp3" data-cover="covers/1.jpg" data-title="The Weeknd - Call Out My Name" data-id="1">
+            <img src="covers/1.jpg" alt="Song 1">
+            <span>The Weeknd - Call Out My Name</span>
+            <time>03:50</time>
+        </div>
+        <div class="song" data-song="music/2.mp3" data-cover="covers/7.jpg" data-title="Frank Sinatra - The World We Knew" data-id="2">
+            <img src="covers/2.jpg" alt="Song 2">
+            <span>Frank Sinatra - The World We Knew</span>
+            <time>02:33</time>
+        </div>
+        <div class="song" data-song="music/3.mp3" data-cover="covers/3.jpg" data-title="Passenger - Let Her Go" data-id="3">
+            <img src="covers/3.jpg" alt="Song 3">
+            <span>Passenger - Let Her Go</span>
+            <time>05:07</time>
+        </div>
+        <div class="song" data-song="music/4.mp3" data-cover="covers/4.jpg" data-title="Alphaville - Forever Young" data-id="4">
+            <img src="covers/4.jpg" alt="Song 4">
+            <span>Alphaville - Forever Young</span>
+            <time>04:14</time>
+        </div>
+        <div class="song" data-song="music/5.mp3" data-cover="covers/9.jpg" data-title="Celion Dion - All by Myself" data-id="5">
+            <img src="covers/5.jpg" alt="Song 5">
+            <span>Celion Dion - All by Myself</span>
+            <time>03:20</time>
+        </div>
+    </div>
+
+    <script>
+        const songs = document.querySelectorAll('.song');
+
+        songs.forEach(song => {
+            song.addEventListener('click', () => {
+
+                const songId = song.getAttribute('data-id');
+
+                window.location.href = `song.html?song=${songId}`;
+            });
+        });
+    </script>
+
+</body>
+
+</html>

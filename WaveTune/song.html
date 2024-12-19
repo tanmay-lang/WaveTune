@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaveTune - Song</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fbeed8;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        header {
+            background-color: #1db954;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 2em;
+            text-transform: uppercase;
+        }
+        
+        .song-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .song-container img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .song-container h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        audio {
+            width: 400px;
+            height: 50px;
+            background: #2c2c2c;
+            border-radius: 25px;
+            border: 2px solid #1db954;
+            margin-top: 20px;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+        
+        audio::-webkit-media-controls-panel {
+            background-color: #2c2c2c;
+            border: none;
+            height: 100%;
+        }
+        
+        audio::-webkit-media-controls-play-button {
+            background-color: #ffffff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            padding: 15px;
+            border: 2px solid #1db954;
+        }
+        
+        audio::-webkit-media-controls-play-button:hover {
+            background-color: #1db954;
+        }
+        
+        audio::-webkit-media-controls-volume-slider {
+            width: 120px;
+            height: 8px;
+            background-color: #1db954;
+            border-radius: 10px;
+        }
+        
+        audio::-webkit-media-controls-mute-button,
+        audio::-webkit-media-controls-volume-control {
+            display: none;
+        }
+        /* Audio Player Custom Timeline */
+        
+        audio::-webkit-media-controls-timeline {
+            background-color: #3a3a3a;
+            height: 6px;
+            border-radius: 5px;
+        }
+        /* Hide some unnecessary default controls */
+        
+        audio::-webkit-media-controls-seek-backward-button,
+        audio::-webkit-media-controls-seek-forward-button {
+            display: none;
+        }
+        /* Current Time Display and Time Remaining Display */
+        
+        audio::-webkit-media-controls-current-time-display,
+        audio::-webkit-media-controls-time-remaining-display {
+            color: #fff;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .audio-player-container button {
+            background-color: #1db954;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .audio-player-container button:hover {
+            background-color: #17a544;
+        }
+        
+        .back-btn {
+            margin-top: 30px;
+            background-color: #1db954;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .back-btn:hover {
+            background-color: #17a544;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>WaveTune - Song Details</header>
+
+    <div class="song-container">
+        <img id="song-cover" src="" alt="Song Cover">
+        <h1 id="song-title">Song Title</h1>
+
+        <div class="audio-player-container">
+            <audio controls id="audio-player">
+                <source src="" type="audio/mpeg">
+            </audio>
+        </div>
+
+        <button class="back-btn" onclick="window.history.back()">Back to Playlist</button>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const songId = urlParams.get('song');
+
+        const songs = [{
+            id: 1,
+            title: 'The Weeknd - Call Out My Name',
+            file: 'music/1.mp3',
+            cover: 'covers/1.jpg'
+        }, {
+            id: 2,
+            title: 'Frank Sinatra - The World We Knew',
+            file: 'music/2.mp3',
+            cover: 'covers/2.jpg'
+        }, {
+            id: 3,
+            title: 'Passenger - Let Her Go',
+            file: 'music/3.mp3',
+            cover: 'covers/3.jpg'
+        }, {
+            id: 4,
+            title: 'Alphaville - Forever Young',
+            file: 'music/4.mp3',
+            cover: 'covers/4.jpg'
+        }, {
+            id: 5,
+            title: 'Celion Dion - All by Myself',
+            file: 'music/5.mp3',
+            cover: 'covers/5.jpg'
+        }];
+
+        const song = songs.find(s => s.id == songId);
+
+        if (song) {
+
+            document.getElementById('song-title').textContent = song.title;
+            document.getElementById('song-cover').src = song.cover;
+            document.getElementById('audio-player').src = song.file;
+        } else {
+
+            document.getElementById('song-title').textContent = "Song not found!";
+            document.getElementById('song-cover').src = "";
+            document.getElementById('audio-player').src = "";
+        }
+    </script>
+
+</body>
+
+</html>
